@@ -4,6 +4,6 @@ The CDC estimates 48 million people get sick, 128,000 are hospitalized, and 3,00
 
 However, popular food review sites such as [Yelp](https://www.yelp.com/) do not publish these results for restaurants in my area (King County, WA), even when those restaurants have had several health violations in recent times. This leaves customers in the dark regarding food safety ratings until they arrive at the restaurant, assuming they see the printed 8.5 x 11 sign.
 
-![A window posting of a food inspection safety rating](images\posting.jpg)
-<sub> A window posting of a food inspection safety rating
+![A window posting of a food inspection safety rating](Images/posting.jpg)
+
 ## 1.1 Breakdown of the Rating System
