@@ -24,4 +24,4 @@ where `Zip Code` = 98068;
 # Normalize 'VASON ISLAND' to 'VASHON'
 update inspection_data
 set City = 'VASHON'
-where city = 'VASHON ISLAND'
+where city = 'VASHON ISLAND';
