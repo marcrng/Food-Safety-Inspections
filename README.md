@@ -7,3 +7,7 @@ However, popular food review sites such as [Yelp](https://www.yelp.com/) do not 
 <img src=Images/posting.jpg width="700" alt="A window posting of a food inspection safety rating"/>
 
 ## 1.1 Breakdown of the Rating System
+
+# 2. Analysis
+# 3. Findings
+# 4. Recommendations
