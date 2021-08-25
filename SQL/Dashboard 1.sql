@@ -1,3 +1,6 @@
+# TODO: Compare violations against income/poverty/population data for each city
+# TODO: Complete Restaurant Lookup view in Tableau
+
 # Create a fail ratio for each city found by total # of 'Unsatisfactory' inspections / All inspections
 create view fail_ratio_city as
 with unsatisfactory_count as

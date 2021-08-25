@@ -1,5 +1,4 @@
 # TODO: Geocode missing lon/lat using python - geopy
-# TODO: Complete Restaurant Lookup view in Tableau
 
 # Update unlabeled city for Walla Walla Farms Cafe @ T-Mobile Newport 2
 update inspection_data
