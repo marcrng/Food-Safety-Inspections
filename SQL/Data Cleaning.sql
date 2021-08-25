@@ -1,3 +1,6 @@
+# TODO: Geocode missing lon/lat using python - geopy
+# TODO: Complete Restaurant Lookup view in Tableau
+
 # Update unlabeled city for Walla Walla Farms Cafe @ T-Mobile Newport 2
 update inspection_data
 
@@ -29,3 +32,8 @@ where city = 'VASHON ISLAND';
 # Set all cities to uppercase to improve readability
 update inspection_data
 set City = upper(City);
+
+# Fix -12.2 longitude for MOD PIZZA - AUBURN NORTH
+update inspection_data
+set Longitude = -122.22239
+where Longitude = -12.222239;
