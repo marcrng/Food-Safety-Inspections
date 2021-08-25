@@ -12,6 +12,16 @@ where city in ('Baring', 'Buckley', 'Everett', 'Fall city', 'Lynnwood', 'Mount V
                'Mukilteo', 'Puyallup', 'SNOHOMISH', 'TACOMA');
 
 # Update all 'SEA TAC' entries to 'SEATAC' to normalize data
+# (Good example of why city IDs are a good idea)
 update inspection_data
 set City = 'SEATAC'
 where city = 'SEA TAC';
+
+# Remove data from SNOQUALMIE PASS, which isn't located in King County but wasn't removed at first pass
+delete from inspection_data
+where `Zip Code` = 98068;
+
+# Normalize 'VASON ISLAND' to 'VASHON'
+update inspection_data
+set City = 'VASHON'
+where city = 'VASHON ISLAND'
