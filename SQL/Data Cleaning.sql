@@ -25,3 +25,7 @@ where `Zip Code` = 98068;
 update inspection_data
 set City = 'VASHON'
 where city = 'VASHON ISLAND';
+
+# Set all cities to uppercase to improve readability
+update inspection_data
+set City = upper(City);
