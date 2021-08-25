@@ -1,7 +1,3 @@
-# Food Safety Inspections
-Analysis of food safety inspections in King County
----
-
 # 1. Introduction
 
 The CDC estimates 48 million people get sick, 128,000 are hospitalized, and 3,000 die from foodborne diseases each year in the United States [(CDC)](https://www.cdc.gov/foodborneburden/estimates-overview.html). Many counties across the US try to spread awareness and incentivize food-service businesses to adhere to health codes by performing regular inspections and maintaining records of violations.
