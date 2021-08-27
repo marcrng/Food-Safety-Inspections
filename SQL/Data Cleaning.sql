@@ -36,3 +36,16 @@ set City = upper(City);
 update inspection_data
 set Longitude = -122.22239
 where Longitude = -12.222239;
+
+# # Create proper 'Inspection Date' column with 'date' datatype
+# alter table inspection_data
+# add inspection_date date;
+#
+# # Populate inspection_date column with data from 'Inspection Date'
+# update inspection_data
+# set inspection_date = str_to_date(`Inspection Date`, '%m/%d/%Y');
+
+# Would generally execute the above 2 commented queries to preserve original 'Inspection Date' data, but electing
+# to directly update `Inspection Date` column for this project since we're using a personal database
+update inspection_data
+set `Inspection Date` = str_to_date(`Inspection Date`, '%m/%d/%Y');
