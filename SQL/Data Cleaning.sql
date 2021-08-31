@@ -11,7 +11,7 @@ and `Zip Code` = 98006;
 # These data points result in inaccurate results for certain cities due to incomplete data.
 delete from inspection_data
 where city in ('Baring', 'Buckley', 'Everett', 'Fall city', 'Lynnwood', 'Mount Vernon',
-               'Mukilteo', 'Puyallup', 'SNOHOMISH', 'TACOMA');
+               'Mukilteo', 'Puyallup', 'SNOHOMISH', 'TACOMA', 'HOBART');
 
 # Update all 'SEA TAC' entries to 'SEATAC' to normalize data
 # (Good example of why city IDs are a good idea)
