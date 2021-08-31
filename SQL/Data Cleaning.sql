@@ -1,5 +1,7 @@
 # TODO: Geocode missing lon/lat using python - geopy
 # TODO: Split data (violation id, description, points)
+# TODO: Pull proper violation_type into violations from Inspection Report sheet
+# TODO: Update violations violation_pts values
 
 # Update unlabeled city for Walla Walla Farms Cafe @ T-Mobile Newport 2
 update inspection_data
@@ -323,3 +325,29 @@ add violation_id smallint;
 
 update inspection_data
 set violation_id = left(`Violation Description`, 4);
+
+# Remove Id from violation descriptions
+update inspection_data
+set `Violation Description` = substr(`Violation Description`, 8)
+
+# Create violations table
+create table violations
+(
+    violation_id smallint,
+    violation_description varchar(300),
+    violation_pts tinyint,
+    violation_type varchar(4)
+);
+
+# Populate violations table fields from inspection_data
+insert into violations (violation_id, violation_description, violation_pts, violation_type)
+select distinct violation_id, `Violation Description`, `Violation Points`, `Violation Type` from inspection_data
+
+# Fix violation_type data using inspection report sheet from King County Public Health
+update violations
+set violation_type = 'RED'
+where violation_id between 100 and 2700;
+
+update violations
+set violation_type = 'BLUE'
+where violation_id between 2800 and 5000;
