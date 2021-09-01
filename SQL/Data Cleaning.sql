@@ -8,11 +8,12 @@ update inspection_data
 
 set city = 'BELLEVUE'
 where city = '(none)'
-and `Zip Code` = 98006;
+  and `Zip Code` = 98006;
 
 # Remove restaurants that aren't in King County, but show up in dataset.
 # These data points result in inaccurate results for certain cities due to incomplete data.
-delete from inspection_data
+delete
+from inspection_data
 where city in ('Baring', 'Buckley', 'Everett', 'Fall city', 'Lynnwood', 'Mount Vernon',
                'Mukilteo', 'Puyallup', 'SNOHOMISH', 'TACOMA', 'HOBART');
 
@@ -23,7 +24,8 @@ set City = 'SEATAC'
 where city = 'SEA TAC';
 
 # Remove data from SNOQUALMIE PASS, which isn't located in King County but wasn't removed at first pass
-delete from inspection_data
+delete
+from inspection_data
 where `Zip Code` = 98068;
 
 # Normalize 'VASON ISLAND' to 'VASHON'
@@ -54,294 +56,297 @@ update inspection_data
 set `Inspection Date` = str_to_date(`Inspection Date`, '%m/%d/%Y');
 
 # Normalize `Violation Description` data
-select distinct `Violation Description` from inspection_data;
+select distinct `Violation Description`
+from inspection_data;
 
 update inspection_data
 set `Violation Description` = '0100 - PIC certified by accredited program or compliance with code, or correct answers'
 where `Violation Description` like '0100%'
-or `Violation Description` like 'PIC certified%';
+   or `Violation Description` like 'PIC certified%';
 
 update inspection_data
 set `Violation Description` = '0200 - Food Worker Cards current for all food workers; new food workers trained'
 where `Violation Description` like '0200%'
-or `Violation Description` like '%Food worker cards%';
+   or `Violation Description` like '%Food worker cards%';
 
 update inspection_data
 set `Violation Description` = '0300 - Proper ill worker and conditional employee practices; no ill practices workers
 present; proper reporting of illness'
 where `Violation Description` like '0300%'
-or `Violation Description` like 'Proper ill worker%';
+   or `Violation Description` like 'Proper ill worker%';
 
 update inspection_data
 set `Violation Description` = '0400 - Hands washed as required'
 where `Violation Description` like '0400%'
-or `Violation Description` like 'Hands washed as%';
+   or `Violation Description` like 'Hands washed as%';
 
 update inspection_data
 set `Violation Description` = '0500 - Proper barriers used to prevent bare hand contact with ready to eat foods.'
 where `Violation Description` like '0500%'
-or `Violation Description` like '%bare hand%';
+   or `Violation Description` like '%bare hand%';
 
 update inspection_data
 set `Violation Description` = '0600 - Adequate handwashing facilities'
 where `Violation Description` like '0600%'
-or `Violation Description` like '%handwashing facilities%';
+   or `Violation Description` like '%handwashing facilities%';
 
 update inspection_data
 set `Violation Description` = '0700 - Food obtained from approved source'
 where `Violation Description` like '0700%'
-or `Violation Description` like 'Food obtained from%';
+   or `Violation Description` like 'Food obtained from%';
 
 update inspection_data
 set `Violation Description` = '0800 - Water supply, ice from approved source'
 where `Violation Description` like '0800%'
-or `Violation Description` like '%water supply, ice%';
+   or `Violation Description` like '%water supply, ice%';
 
 update inspection_data
 set `Violation Description` = '0900 - Proper washing of fruits and vegetables'
 where `Violation Description` like '0900%'
-or `Violation Description` like '%fruits and vegetable%';
+   or `Violation Description` like '%fruits and vegetable%';
 
 update inspection_data
 set `Violation Description` = '1000 - Food in good condition, safe and unadulterated; approved additives'
 where `Violation Description` like '1000%'
-or `Violation Description` like 'Food in good condition%';
+   or `Violation Description` like 'Food in good condition%';
 
 update inspection_data
 set `Violation Description` = '1100 - Proper disposition of returned, previously served, unsafe, or contaminated food'
 where `Violation Description` like '1100%'
-or `Violation Description` like 'Proper disposition of returned%';
+   or `Violation Description` like 'Proper disposition of returned%';
 
 update inspection_data
 set `Violation Description` = '1200 - Proper shellstock ID; wild mushroom ID; parasite destruction procedures for fish'
 where `Violation Description` like '1200%'
-or `Violation Description` like 'Proper shellstock ID%'
-or `Violation Description` like 'Proper shellfish identi%';
+   or `Violation Description` like 'Proper shellstock ID%'
+   or `Violation Description` like 'Proper shellfish identi%';
 
 update inspection_data
 set `Violation Description` = '1300 - Food contact surfaces and utensils used for raw meat thoroughly cleaned and
  sanitized. No cross contamination'
 where `Violation Description` like '1300%'
-or `Violation Description` like 'Food contact surfaces%'
-or `Violation Description` like 'Food-contact surfaces%';
+   or `Violation Description` like 'Food contact surfaces%'
+   or `Violation Description` like 'Food-contact surfaces%';
 
 update inspection_data
 set `Violation Description` = '1400 - Raw meats below and away from ready to eat food; species separated'
 where `Violation Description` like '1400%'
-or `Violation Description` like 'Raw meats below and away from%';
+   or `Violation Description` like 'Raw meats below and away from%';
 
 update inspection_data
 set `Violation Description` = '1500 - -Proper handling of pooled eggs'
 where `Violation Description` like '1500%'
-or `Violation Description` like '%pooled eggs%';
+   or `Violation Description` like '%pooled eggs%';
 
 update inspection_data
 set `Violation Description` = '1600 - Proper cooling procedures'
 where `Violation Description` like '1600%'
-or `Violation Description` like '%cooling procedure%';
+   or `Violation Description` like '%cooling procedure%';
 
 update inspection_data
 set `Violation Description` = '1710 - Proper hot holding temperatures (less than 130 degrees F)'
 where `Violation Description` like '1710%'
-or `Violation Description` like '%less than 130%';
+   or `Violation Description` like '%less than 130%';
 
 update inspection_data
 set `Violation Description` = '1720 - Proper hot holding temperatures (between 130 degrees F to 134 degrees F)'
 where `Violation Description` like '1720%'
-or `Violation Description` like '%between 130%';
+   or `Violation Description` like '%between 130%';
 
 update inspection_data
 set `Violation Description` = '1800 - Proper cooking time and temperature; proper use of non-continuous cooking'
 where `Violation Description` like '1800%'
-or `Violation Description` like 'Proper cooking time%';
+   or `Violation Description` like 'Proper cooking time%';
 
 update inspection_data
 set `Violation Description` = '1900 - No room temperature storage; proper use of time as a control'
 where `Violation Description` like '1900%'
-or `Violation Description` like 'No room temperature storage%';
+   or `Violation Description` like 'No room temperature storage%';
 
 update inspection_data
 set `Violation Description` = '2000 - Proper reheating procedures for hot holding'
 where `Violation Description` like '2000%'
-or `Violation Description` like 'Proper reheating procedures%';
+   or `Violation Description` like 'Proper reheating procedures%';
 
 update inspection_data
 set `Violation Description` = '2110 - Proper cold holding temperatures (greater than 45 degrees F)'
 where `Violation Description` like '2110%'
-or `Violation Description` like '%greater than 45%';
+   or `Violation Description` like '%greater than 45%';
 
 update inspection_data
 set `Violation Description` = '2120 - Proper cold holding temperatures (between 42 degrees F to 45 degrees F)'
 where `Violation Description` like '2120%'
-or `Violation Description` like '%42 degrees f to 45%';
+   or `Violation Description` like '%42 degrees f to 45%';
 
 update inspection_data
 set `Violation Description` = '2200 - Accurate thermometer provided and used to evaluate temperature
 of PHF'
 where `Violation Description` like '2200%'
-or `Violation Description` like 'Accurate thermometer %';
+   or `Violation Description` like 'Accurate thermometer %';
 
 update inspection_data
 set `Violation Description` = '2300 - Proper Consumer Advisory posted for raw or undercooked foods'
 where `Violation Description` like '2300%'
-or `Violation Description` like 'Proper Consumer advisory%';
+   or `Violation Description` like 'Proper Consumer advisory%';
 
 update inspection_data
 set `Violation Description` = '2400 - Pasteurized foods used as required; prohibited foods not offered'
 where `Violation Description` like '2400%'
-or `Violation Description` like 'Pasteurized foods used%';
+   or `Violation Description` like 'Pasteurized foods used%';
 
 update inspection_data
 set `Violation Description` = '2500 - Toxic substances properly identified, stored, used'
 where `Violation Description` like '2500%'
-or `Violation Description` like 'Toxic substances properly%';
+   or `Violation Description` like 'Toxic substances properly%';
 
 update inspection_data
 set `Violation Description` = '2600 - Compliance with risk control plans, variances, plan of operation; valid permit;
 approved procedures for non-continuous cooking'
 where `Violation Description` like '2600%'
-or `Violation Description` like '%Compliance with risk%';
+   or `Violation Description` like '%Compliance with risk%';
 
 update inspection_data
 set `Violation Description` = '2700 - Variance obtained for specialized processing methods
 (e.g., ROP)'
 where `Violation Description` like '2700%'
-or `Violation Description` like 'Variance obtained for%';
+   or `Violation Description` like 'Variance obtained for%';
 
 update inspection_data
 set `Violation Description` = '2800 - Food received at proper temperature'
 where `Violation Description` like '2800%'
-or `Violation Description` like '%food received at%';
+   or `Violation Description` like '%food received at%';
 
 update inspection_data
 set `Violation Description` = '2900 - Adequate equipment for temperature control'
 where `Violation Description` like '2900%'
-or `Violation Description` like '%equipment for temp%';
+   or `Violation Description` like '%equipment for temp%';
 
 update inspection_data
 set `Violation Description` = '3000 - Proper thawing methods used'
 where `Violation Description` like '3000%'
-or `Violation Description` like 'Proper thawing methods%';
+   or `Violation Description` like 'Proper thawing methods%';
 
 update inspection_data
 set `Violation Description` = '3100 - Proper labeling, signage'
 where `Violation Description` like '3100%'
-or `Violation Description` like '%proper labeling%';
+   or `Violation Description` like '%proper labeling%';
 
 update inspection_data
 set `Violation Description` = '3200 - Insects, rodents, animals not present; entrance controlled'
 where `Violation Description` like '3200%'
-or `Violation Description` like 'Insects, rodents, animals%';
+   or `Violation Description` like 'Insects, rodents, animals%';
 
 update inspection_data
 set `Violation Description` = '3300 - Potential food contamination prevented during delivery,  preparation, storage, display'
 where `Violation Description` like '3300%'
-or `Violation Description` like 'Potential food contamination%';
+   or `Violation Description` like 'Potential food contamination%';
 
 update inspection_data
 set `Violation Description` = '3400 - Wiping cloths properly used, stored; proper sanitizer'
 where `Violation Description` like '3400%'
-or `Violation Description` like 'Wiping cloths properly%';
+   or `Violation Description` like 'Wiping cloths properly%';
 
 update inspection_data
 set `Violation Description` = '3500 - Employee cleanliness and hygiene'
 where `Violation Description` like '3500%'
-or `Violation Description` like '%Employee cleanliness and%';
+   or `Violation Description` like '%Employee cleanliness and%';
 
 update inspection_data
 set `Violation Description` = '3600 - Proper eating, tasting, drinking, or tobacco use'
 where `Violation Description` like '3600%'
-or `Violation Description` like 'Proper eating, tasting%';
+   or `Violation Description` like 'Proper eating, tasting%';
 
 update inspection_data
 set `Violation Description` = '3700 - In-use utensils properly stored'
 where `Violation Description` like '3500%'
-or `Violation Description` like '%In-use utensils%';
+   or `Violation Description` like '%In-use utensils%';
 
 update inspection_data
 set `Violation Description` = '3800 - Utensils, equipment, linens properly stored, used, handled'
 where `Violation Description` like '3800%'
-or `Violation Description` like 'Utensils, equipment, linens%';
+   or `Violation Description` like 'Utensils, equipment, linens%';
 
 update inspection_data
 set `Violation Description` = '3900 - Single-use and single-service articles properly stored, used'
 where `Violation Description` like '3900%'
-or `Violation Description` like 'Single-use and single-service articles%'
-or `Violation Description` like 'single use and single service articles%';
+   or `Violation Description` like 'Single-use and single-service articles%'
+   or `Violation Description` like 'single use and single service articles%';
 
 update inspection_data
 set `Violation Description` = '4000 - Food and non-food surfaces properly used and constructed; cleanable'
 where `Violation Description` like '4000%'
-or `Violation Description` like 'Food and non-food surfaces%';
+   or `Violation Description` like 'Food and non-food surfaces%';
 
 update inspection_data
 set `Violation Description` = '4100 - Warewashing facilities properly installed, maintained, used; test strips
 available and used'
 where `Violation Description` like '4100%'
-or `Violation Description` like 'Warewashing%';
+   or `Violation Description` like 'Warewashing%';
 
 update inspection_data
 set `Violation Description` = '4400 - Plumbing properly sized, installed, and maintained; proper backflow devices,
 indirect drains, no cross-connections'
 where `Violation Description` like '4400%'
-or `Violation Description` like 'Plumbing properly sized%';
+   or `Violation Description` like 'Plumbing properly sized%';
 
 update inspection_data
 set `Violation Description` = '4500 - Sewage, wastewater properly disposed'
 where `Violation Description` like '4500%'
-or `Violation Description` like '%sewage, waste water%';
+   or `Violation Description` like '%sewage, waste water%';
 
 update inspection_data
 set `Violation Description` = '4600 - Toilet facilities properly constructed, supplied, cleaned'
 where `Violation Description` like '4600%'
-or `Violation Description` like 'Toilet facilities properly%';
+   or `Violation Description` like 'Toilet facilities properly%';
 
 update inspection_data
 set `Violation Description` = '4700 - Garbage, refuse properly disposed; facilities maintained'
 where `Violation Description` like '4700%'
-or `Violation Description` like 'Garbage, refuse%';
+   or `Violation Description` like 'Garbage, refuse%';
 
 update inspection_data
 set `Violation Description` = '4800 - Physical facilities properly installed, maintained, cleaned; unnecessary
 persons excluded from establishment'
 where `Violation Description` like '4800%'
-or `Violation Description` like 'Physical facilities properly installed%';
+   or `Violation Description` like 'Physical facilities properly installed%';
 
 update inspection_data
 set `Violation Description` = '4900 - Adequate ventilation, lighting; designated areas used'
 where `Violation Description` like '4900%'
-or `Violation Description` like '%Adequate ventilation%';
+   or `Violation Description` like '%Adequate ventilation%';
 
 update inspection_data
 set `Violation Description` = '5000 - Posting of permit; mobile establishment name easily visible'
 where `Violation Description` like '5000%'
-or `Violation Description` like 'Posting of permit%';
+   or `Violation Description` like 'Posting of permit%';
 
 # ---------------------------------------------------------------------------------------------------------------------
 
 # Create id column for violation description, consider splitting data into multiple tables
 alter table inspection_data
-add violation_id smallint;
+    add violation_id smallint;
 
 update inspection_data
 set violation_id = left(`Violation Description`, 4);
 
 # Remove Id from violation descriptions
 update inspection_data
-set `Violation Description` = substr(`Violation Description`, 8)
+set `Violation Description` = substr(`Violation Description`, 8);
 
 # Create violations table
 create table violations
 (
-    violation_id smallint,
+    violation_id          smallint not null,
     violation_description varchar(300),
-    violation_pts tinyint,
-    violation_type varchar(4)
+    violation_pts         tinyint,
+    violation_type        varchar(4),
+    primary key (violation_id)
 );
 
 # Populate violations table fields from inspection_data
 insert into violations (violation_id, violation_description, violation_pts, violation_type)
-select distinct violation_id, `Violation Description`, `Violation Points`, `Violation Type` from inspection_data
+select distinct violation_id, `Violation Description`, `Violation Points`, `Violation Type`
+from inspection_data;
 
 # Fix violation_type data using inspection report sheet from King County Public Health
 update violations
@@ -351,3 +356,151 @@ where violation_id between 100 and 2700;
 update violations
 set violation_type = 'BLUE'
 where violation_id between 2800 and 5000;
+
+# Delete duplicate rows from violations
+# NOTE: CTE not updatable in mysql
+delete
+from violations
+where violation_id in (
+    select violation_id
+    from (
+             select violation_id,
+                    violation_description,
+                    row_number() over (partition by violation_id order by violation_id) as rn
+             from violations) t
+    where rn > 1
+);
+
+
+select *
+from violations
+order by violation_id;
+
+# Verify integrity; complete violations table to include all violation types
+
+insert into violations (violation_id, violation_description, violation_pts, violation_type)
+values (200,
+        'Food Worker Cards current for all food workers; new food workers trained',
+        5,
+        'RED'),
+       (600,
+        'Adequate handwashing facilities',
+        10,
+        'RED'),
+       (1710,
+        'Proper hot holding temperatures (less than 130 degrees F)',
+        20,
+        'RED'),
+       (1900,
+        'No room temperature storage; proper use of time as a control',
+        25,
+        'RED'),
+       (2110,
+        'Proper cold holding temperatures (greater than 45 degrees F)',
+        10,
+        'RED'),
+       (2120,
+        'Proper cold holding temperatures (between 42 degrees F to 45 degrees F)',
+        5,
+        'RED'),
+       (2200,
+        'Accurate thermometer provided and used to evaluate temperature of PHF',
+        5,
+        'RED'),
+       (2500,
+        'Toxic substances properly identified, stored, used',
+        10,
+        'RED'),
+       (2600,
+        'Compliance with risk control plans, variances, plan of operation; valid permit; approved procedures
+for non-continuous cooking',
+        10,
+        'RED'),
+       (3400,
+        'Wiping cloths properly used, stored; proper sanitizer',
+        5,
+        'BLUE'),
+       (3500,
+        'Employee cleanliness and hygiene',
+        3,
+        'BLUE'),
+       (4000,
+        'Food and non-food surfaces properly used and constructed; cleanable',
+        5,
+        'BLUE'),
+       (4200,
+        'Food-contact surfaces maintained, cleaned, sanitized',
+        5,
+        'BLUE');
+
+# Drop Violation Description, Points, Type from inspection_data
+alter table inspection_data
+    drop `Violation Type`;
+
+alter table inspection_data
+    drop `Violation Description`;
+
+alter table inspection_data
+    drop `Violation Points`;
+
+# Rename violations violation_id to id
+# Makes more sense to link to violations v - i.violation_id = v.id
+alter table violations
+    rename column violation_id to id;
+
+# Rename inspection_data to inspections
+# -- Consider doing first in later projects
+alter table inspection_data
+    rename to inspections;
+
+# Add primary key id to inspections - 254,508 total rows
+alter table inspections
+    add id int auto_increment primary key;
+
+# Count of distinct businesses, sub-businesses -- Count: 11,205 | businesses count: 12,321
+select count(distinct name, `program identifier`)
+from inspections; -- 11205
+
+select count(*) from businesses; -- 12321
+
+select count(distinct Business_ID) from inspections -- 12321
+
+# Drop Inspection Business Name column as all are identical to 'Name' column
+alter table inspections
+    drop `Inspection Business Name`
+
+# Create table businesses with
+# id, name, identifier, description, address, city, zip, phone, lon, lat
+create table businesses
+(
+    id          varchar(50) primary key unique,
+    name        varchar(500),
+    identifier  varchar(500),
+    description varchar(100),
+    address     varchar(200),
+    city        varchar(50),
+    zip         int,
+    phone       varchar(25),
+    lon         double,
+    lat         double
+);
+
+drop table businesses
+# Populate businesses table with data from inspections
+insert into businesses
+(id, name, identifier, description, address, city, zip, phone, lon, lat)
+select distinct Business_ID,
+                Name,
+                `Program Identifier`,
+                Description,
+                Address,
+                City,
+                `Zip Code`,
+                Phone,
+                Longitude,
+                Latitude
+from inspections;
+
+SELECT distinct name, `Program identifier`, Business_ID from inspections;
+
+select count(*) from businesses
